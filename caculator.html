@@ -1,0 +1,81 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<section id="myCalculator">
+<header>
+<div class="heading">My calculator</div>
+</header>
+<footer>
+<textarea id="result">
+</textarea>
+</footer>
+</section>
+<section id="inputArea">
+<header>
+<div class="heading">
+Input
+</div>
+</header>
+<footer>
+<form class="form" name="inputForm" action="" method="GET">
+<label>Operands:</label>
+<!-- we are using this as text input because of practicing validation in js -->
+<input type="text" name="firstValue" id="fvalue" size="4" required>
+<input type="text" name="secondValue" id="svalue" size="4" required><br>
+<div class="submitButtons">
+<label>Operator:</label>
+<input type="button" value="+" onclick="solution('add')">
+<input type="button" value="&times;" onclick="solution('multiply')"><!-- this input has different symbol in picture but i found in requirments of the question is that
+it is division so updated it -->
+<input type="button" value="/" onclick="solution('divide')">
+<input type="button" value="clear" onclick="clr()">
+</div>
+</form>
+</footer>
+</section>
+<script>
+    //solution function will handle each operations
+    function solution(operator) {
+    var firstValue = parseFloat(document.forms["inputForm"]["firstValue"].value);
+    var secondValue = parseFloat(document.forms["inputForm"]["secondValue"].value);
+    var result;
+    //validating input should be number only
+    if (isNaN(firstValue) || isNaN(secondValue)) {
+    alert('Please enter both operands');
+    return;
+    }
+    //using switch for various operations
+    switch (operator) {
+    case 'add':
+    result = eval(firstValue) + eval(secondValue);
+    output = firstValue + " + " + secondValue + " = " + result;
+    document.getElementById('result').value = output;
+    console.log(output);
+    break;
+    case 'multiply':
+    result = eval(firstValue) * eval(secondValue);
+    output = firstValue + " x " + secondValue + " = " + result;
+    document.getElementById('result').value = output;
+    console.log(output);
+    break;
+    case 'divide':
+    result = eval(firstValue) / eval(secondValue);
+    output = firstValue + " / " + secondValue + " = " + result;
+    document.getElementById('result').value = output;
+    console.log(output);
+    break;
+    default:
+    break;
+    }
+    }
+    //function to clear all inputs and result
+    function clr() {
+    document.getElementById("result").value = "";
+    document.forms["inputForm"]["firstValue"].value = "";
+    document.forms["inputForm"]["secondValue"].value = "";
+    }
+    </script>
+    </body>
+    </html>
